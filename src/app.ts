@@ -4,6 +4,8 @@ import { connectDB } from './utils/features.js';
 import userRoutes from './routes/user.js';
 import productRoutes from './routes/products.js';
 import { errorMiddleware } from './middlewares/error.js';
+import NodeCache from "node-cache";
+
 
 const app: Express = express();
 
@@ -12,7 +14,7 @@ app.use(express.json());
 
 // Connect to MongoDB
 connectDB();
-
+export const nodeCache = new NodeCache();
 // Routes
 app.use('/api/users', userRoutes);
 app.use('/api/products', productRoutes);
