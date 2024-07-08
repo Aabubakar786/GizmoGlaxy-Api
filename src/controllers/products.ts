@@ -5,6 +5,7 @@ import { TryCatch } from "../middlewares/error.js";
 import { Product } from "../models/products.js";
 import { rm } from "fs";
 import { nodeCache } from "../app.js";
+import { invalidateCache } from "../utils/features.js";
 
 export const createProducts = TryCatch(
   async (
@@ -30,9 +31,9 @@ export const createProducts = TryCatch(
       category: category.toLocaleLowerCase(),
       photo: photo?.path,
     });
-
-    // Clear the cache for the getProducts endpoint
-    nodeCache.del("getProducts");
+   await invalidateCache({product:true});
+    // // Clear the cache for the getProducts endpoint
+    // nodeCache.del("getProducts");
 
     res.status(200).json({
       success: true,
