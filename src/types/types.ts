@@ -10,6 +10,29 @@ export interface NewUserRequestBody {
     _id: string;
     dob: Date;
 }
+export interface NewOrderRequestBody {
+    shippingInfo: {
+      address: string;
+      city: string;
+      state: string;
+      country: string;
+      pinCode: number;
+    };
+    user: string;
+    subtotal: number;
+    tax: number;
+    shippingCharges: number;
+    discount: number;
+    total: number;
+    orderItems: {
+      name: string;
+      photo: string;
+      price: number;
+      quantity: number;
+      productId: string;
+    }[];
+  }
+  
 export interface NewProductBody {
     name: string;
     photo: string;
@@ -22,3 +45,9 @@ export type ControllerType = (
     res: Response,
     next: NextFunction
 ) => Promise<void | Response<any, Record<string, any>>>;
+
+export type InvalidateCacheProps ={
+    product?: boolean;
+    order?: boolean;
+    admin?: boolean;
+}
