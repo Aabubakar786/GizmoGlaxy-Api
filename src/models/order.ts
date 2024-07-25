@@ -10,7 +10,7 @@ interface IShippingInfo {
 
 interface IOrder extends Document {
   shippingInfo?: IShippingInfo;
-  user?: mongoose.Types.ObjectId;
+  user?: String;
   subtotal?: number;
   tax?: number;
   shippingCharges?: number;
@@ -55,7 +55,7 @@ const orderSchema = new Schema<IOrder>({
     required: true
   },
   user: {
-    type: mongoose.Types.ObjectId,
+    type: String,
     ref: "User",
     required: true
   },
