@@ -26,7 +26,7 @@ export const nodeCache = new NodeCache();
 // Routes
 app.use('/api/users', userRoutes);
 app.use('/api/products', productRoutes);
-app.unsubscribe('/api/orders', orderRoutes)
+app.use('/api/orders', orderRoutes)
 
 // this is use to get image or file
 app.use("/uploads", express.static("uploads"));
